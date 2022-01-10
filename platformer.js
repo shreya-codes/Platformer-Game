@@ -1,4 +1,15 @@
 const canvas=document.getElementById("canvas").getContext("2d")//gets the canvas and specifies that we wll be working in 2d
+
+let keysDown={}; //empty object which will hold the keys currently pressed.By storing current keys allows multiple keys to be pressed at onnce 
+addEventListener("keydown",function(event){ //eventlistener for key press
+    keysDown[event.keyCode]=true;
+});
+addEventListener("keyup",function(event){
+    delete keysDown[event.keyCode]; //removes the entry of the released key from keysDown
+})
+
+
+
 //object with attributes of player
 const player={
     X:0,
