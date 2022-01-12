@@ -36,14 +36,47 @@ const player={
     yke:0 , //kinetic energy in y axis
     gpe:0 //gravitational potential energy
 }
+const lvl = `0000101011111111
+000000000000000
+0010000000000000
+0000000000001111
+0000111000000000
+0000000000011111
+0000000000000000
+0000000000111111
+0000000000011000
+1110000000000000
+0000000010000110
+0001111111100000
+0000000000000000
+0000000000000000
+0000000001111110
+0000000000000000`;
+const lines = lvl.split("\n");
+const characters = lines.map(l => l.split(""));
+function parse(lvl){
+    const lines = lvl.split("\n");
+    const characters = lines.map(l => l.split(""));
+    return characters;
+  }
+  let currentLevel;
+  
 function draw(){
 context.clearRect(0,0,canvas.width,canvas.height);
 context.fillStyle="#FF0000"; //specify the color to fill the next object drawn
 context.fillRect(player.X,player.Y,player.width,player.height)//draws and fills therectangle at the same time
+context.fillStyle = "black";
+  for (let row = 0; row < currentLevel.length; row++) {
+    for (let col = 0; col < currentLevel[0].length; col++) {
+      if (currentLevel[row][col] === "1") {
+        context.fillRect(col * 32, row * 32, 32, 32);
+      }
+    }
+}
 }
 function calcGPE(obj){
     let m=obj.mass;
-    let g=9.8/1000000 //dividing by million so that it scales correctly
+    let g=9.8/10000000 //dividing by million so that it scales correctly
     let h=((canvas.height-obj.height)-(obj.Y/32))
     let GPE= m*g*h;
     // console.log(`gpe ${GPE}`)
@@ -62,5 +95,6 @@ function main (){ //function to udate and draw new things fast
 }
 
 window.onload=function(){
+    currentLevel = parse(lvl);
     main();
 }
