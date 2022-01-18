@@ -11,3 +11,7 @@ canvas{
    background-image: url(background.png);
     image-rendering: pixelated;
 }
+body{
+    display:flex;
+    justify-content:center;
+}
