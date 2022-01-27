@@ -1,4 +1,5 @@
 import MovingDirection from "./MovingDirection.js";
+
 export default class Character{
     constructor(x,y,tileSize,velocity,gravity,gravitySpeed,gravityHeight,tileMap){
         this.x=x;
@@ -11,51 +12,58 @@ export default class Character{
         this.tileMap= tileMap
         this.currentMovingDirection=null;
         this.requestdMovingDirection= null;
+        this.frames=0;
         this.#loadCharacterImages();
         document.addEventListener("keydown",this.#keydown)
-    }
+ }
 drawCharacter(context){
     
-    context.drawImage(this.characterImages[0],
+    context.drawImage(
+        this.characterImages[0],
+        177*this.frames,
+        0,
+        177 //with of crop mark
+        ,400,
         this.x,
         this.y,
         this.tileSize,
-        this.tileSize)
-        
+        this.tileSize,
+        66,150
+        )
+      
         
 }
 enableGravity(){
-    // console.log(`gravity after ${this.y}`)
+    if(this.frames>28) this.frames=0
+    this.frames+=1
    if(( this.y/this.tileSize)<9){
        if(!this.tileMap.onGround(this.x,this.y)){
      this.y+=2}
-    //    console.log(`gravity after ${this.y}`)
-    //     // this.gravityHeight=this.y-640);
-        // this.gravitySpeed=this.gravityHeight*this.gravity;
-        // this.y+=this.gravitySpeed
+    
     }
 }
 
 #loadCharacterImages(){
-    const characterIdle=new Image();
-    characterIdle.src='./images/Idle\ \(1\).png';
-    const characterJump=new Image();
-    characterJump.src='./images/Jump\ \(1\).png';
-    const characterRun1=new Image();
-    characterRun1.src='./images/Run\ \(1\).png';
-
-    const characterRun2=new Image();
-    characterRun2.src='./images/Run\ \(2\).png';
-
-    const characterRun3=new Image();
-    characterRun3.src='./images/Run\ \(3\).png';
-console.log("inside")
+    
+   const spriteRunLeft=new Image();
+    spriteRunLeft.src= "img/spriteRunLeft.png";
+   
+   const spriteRunRight=new Image();
+      spriteRunRight.src= 'img/spriteRunRight.png';
+     
+     const spriteStandLeft=new Image();
+     spriteStandLeft.src= 'img/spriteStandLeft.png';
+     
+     const spriteStandRight=new Image();
+      spriteStandRight.src= 'img/spriteStandRight.png';
+    
+    
     this.characterImages=[
-        characterIdle,
-        characterJump,
-        characterRun1,
-        characterRun2,
-        characterRun3 
+        spriteStandRight,
+        spriteStandLeft,
+        spriteRunLeft,
+        spriteRunRight,
+       
     ];
     this.pacmanImageIndex=0;
 }
@@ -64,18 +72,22 @@ console.log("inside")
     if(event.keyCode===32  || event.keyCode===38 ){//for spacebar or up arrow 
             this.currentMovingDirection=MovingDirection.up
             this.move()
+            
     }
     if(event.keyCode===40 ){ //for down arrow
             this.currentMovingDirection=MovingDirection.down
             this.move()
+            
     }
     if(event.keyCode===37 ){ // 37 is keycode for leftarrow
             this.currentMovingDirection=MovingDirection.left
             this.move()
+            
     }
     if(event.keyCode===39 ){ //for right arrow
             this.currentMovingDirection=MovingDirection.right
             this.move()
+            
     }
 
 }
@@ -111,9 +123,7 @@ move(){
    
     console.log(this.x,this.y)
 }
-test(){
-    console.log("a")
-}
+
    
  
 

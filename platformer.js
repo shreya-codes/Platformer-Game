@@ -12,9 +12,10 @@ const character=tileMap.getCharacter(velocity, gravity,gravitySpeed,gravityHeigh
 
 function main (){ //function to udate and draw new things fast
     
+
     tileMap.drawTile(canvas,context);
     character.drawCharacter(context);
-   character.enableGravity();
+    character.enableGravity();
     requestAnimationFrame(main);//allows HTML to render what is drawn and then calls the main function againThe requestAnimationFrame() method tells the browser to run a callback function right before the next repaint happens.   
     
     

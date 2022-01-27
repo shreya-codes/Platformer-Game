@@ -3,21 +3,24 @@ import Character from "./Character.js"
 export default class TileMap{
     constructor(tileSize,player){
         this.tileSize=tileSize;
-        this.wall=this.#image("grassnow.png")
-        this.sky=this.#image("night.jpg")
-        this.dirt=this.#image("dirtnow.png")  
+        this.dirt=this.#image("img/platformSmall.png")
+        this.sky=this.#image("img/background.png")
+        this.wall=this.#image("img/platformSmallTall.png")  
+        this.coin=this.#image('img/coin.png')
         
         
     }
    
     #image(fileName){ //private method
         const img= new Image(); //create image object 
-        img.src=`./${fileName}`; //giving a path 
+        img.src=`${fileName}`; //giving a path 
         return img;
     }
     //1-grass
     //0-skt
     //2=dirt
+    //3=character
+    //4=coin
     map = [
         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1],
@@ -25,7 +28,7 @@ export default class TileMap{
         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         [0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0],
         [0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1],
-        [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        [1,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0],
         [0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0],
         [0,0,3,0,0,0,0,0,2,1,0,0,0,0,0,0],
         [1,1,1,1,1,1,1,1,2,2,1,1,1,1,1,1],
@@ -53,9 +56,11 @@ export default class TileMap{
                         image=this.dirt;
                         break;
                     case 3:
-                            image=this.character;
-                           
-                                break;
+                        image=this.character;
+                         break;
+                    case 4:
+                        image=this.coin;
+                        break;
                     
                 }
                if(image!=null)
