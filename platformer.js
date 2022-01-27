@@ -1,5 +1,5 @@
 import TileMap from "./tileMap.js";
-import Character from "./Character.js";
+//import Character from "./Character.js";
 const canvas= document.getElementById("canvas");
 const context=canvas.getContext("2d")//gets the canvas and specifies that we wll be working in 2d
 const tileSize =64;
