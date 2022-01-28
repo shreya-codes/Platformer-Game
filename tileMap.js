@@ -227,7 +227,7 @@ export default class TileMap{
 
     }
     tileCollided(row,column){
-        console.log(win)
+       
         //console.log(row,column,direction);
         //console.log('inside tile collided')
         let intRow=Math.ceil(row)
@@ -253,8 +253,7 @@ export default class TileMap{
             this.scoreBoard(tile,intRow,column)
         }
         else if (tile===6){
-             console.log("you win")
-
+          console.log('you win')
         }
     }
 gameEnd(){
