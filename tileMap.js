@@ -253,8 +253,8 @@ export default class TileMap{
             this.scoreBoard(tile,intRow,column)
         }
         else if (tile===6){
-            const win = document.createElement("div");
-            win.classList.add('win');
+             console.log("you win")
+
         }
     }
 gameEnd(){
