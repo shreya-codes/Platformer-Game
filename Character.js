@@ -13,8 +13,8 @@ export default class Character{
         this.currentMovingDirection=null;
         this.requestdMovingDirection= null;
         this.frames=0;
-        this.#loadCharacterImages();
-        document.addEventListener("keydown",this.#keydown)
+        this.loadCharacterImages();
+        document.addEventListener("keydown",this.keydown)
  }
 drawCharacter(context){
     
@@ -43,7 +43,7 @@ enableGravity(){
     }
 }
 
-#loadCharacterImages(){
+loadCharacterImages(){
     
    const spriteRunLeft=new Image();
     spriteRunLeft.src= "img/spriteRunLeft.png";
@@ -67,7 +67,7 @@ enableGravity(){
     ];
     this.pacmanImageIndex=0;
 }
-#keydown=(event)=>{
+keydown=(event)=>{
     
     if(event.keyCode===32  || event.keyCode===38 ){//for spacebar or up arrow 
             this.currentMovingDirection=MovingDirection.up
@@ -93,8 +93,8 @@ enableGravity(){
 }
 
 move(){
-    console.log(this.x,this.y)
-    this.tileMap.fun(this.x,this.y);
+    // console.log(this.x,this.y)
+   
   //  this.didCollideRight(this.x,this.y,this.currentMovingDirection)
     //this.tileMap.didCollide(this.x,this.y,this.currentMovingDirection);
     
@@ -121,7 +121,7 @@ move(){
         break;
     }
    
-    console.log(this.x,this.y)
+    // console.log(this.x,this.y)
 }
 
    

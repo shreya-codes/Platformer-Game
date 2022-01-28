@@ -7,12 +7,10 @@ const velocity=10;
 const gravity=0.005;
 const gravitySpeed=0;
 const gravityHeight=0;
-const tileMap= new TileMap(tileSize);
+const tileMap= new TileMap(tileSize,context);
 const character=tileMap.getCharacter(velocity, gravity,gravitySpeed,gravityHeight);
 
 function main (){ //function to udate and draw new things fast
-    
-
     tileMap.drawTile(canvas,context);
     character.drawCharacter(context);
     character.enableGravity();
@@ -20,6 +18,7 @@ function main (){ //function to udate and draw new things fast
     
     
 }
+
 
 window.onload=function(){    
     main();
